@@ -43,12 +43,12 @@ public class UserService {
     }
     public List<User> today(String userDate){
         if(userDate==null){
-        Calendar calendar = Calendar.getInstance(); // gets current instance of the calendar
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        calendar.set(Calendar.SECOND,0); //这是将当天的【秒】设置为0
-        calendar.set(Calendar.MINUTE,0); //这是将当天的【分】设置为0
-        calendar.set(Calendar.HOUR_OF_DAY,0); //这是将当天的【时】设置为0
-        userDate=formatter.format(calendar.getTime());}
+            Calendar calendar = Calendar.getInstance(); // gets current instance of the calendar
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            calendar.set(Calendar.SECOND,0); //这是将当天的【秒】设置为0
+            calendar.set(Calendar.MINUTE,0); //这是将当天的【分】设置为0
+            calendar.set(Calendar.HOUR_OF_DAY,0); //这是将当天的【时】设置为0
+            userDate=formatter.format(calendar.getTime());}
         return userMapper.today(userDate);
     }
     public int Update(User user){
@@ -57,12 +57,12 @@ public class UserService {
 
     public int Cun(User user){
         if (user.getType()==1){
-          int x=userMapper.grade(user);
-          //user.setActionGrade(user.getUserGrade());
-        user.setUserGrade(user.getUserGrade()+x);}
+            int x=userMapper.grade(user);
+            //user.setActionGrade(user.getUserGrade());
+            user.setUserGrade(user.getUserGrade()+x);}
         if (user.getType()==2){
             int x=userMapper.grade(user);
-           // user.setActionGrade(user.getUserGrade());
+            // user.setActionGrade(user.getUserGrade());
             user.setUserGrade(x-user.getUserGrade());}
         Calendar calendar = Calendar.getInstance(); // gets current instance of the calendar
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

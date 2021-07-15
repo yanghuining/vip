@@ -2,42 +2,55 @@
 package com.example.demo.service;
 
 
-import com.example.demo.Result;
 import com.example.demo.entity.Login;
-import com.example.demo.entity.User;
 import com.example.demo.mapper.LoginMapper;
-import com.example.demo.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import java.util.List;
-import java.util.UUID;
-
 @Service
-public class LoginServiceImpl  {
+public class LoginService {
     @Autowired
     private LoginMapper loginMapper;
-    public int mima(Login login) {
-     /*  if (StringUtils.isEmpty(login.getLoginName())){
+    public String mima(Login login) {
+   /*   if (StringUtils.isEmpty(login.getLoginName())){
             return new Result(400,"账号不能为空","");
         }
         if (StringUtils.isEmpty(login.getPassword())){
             return new Result(400,"密码不能为空","");
+        }*/
+
+        String mm = login.getPassword();
+        String password = loginMapper.mima(login);
+        System.out.println(mm);
+        System.out.println(password);
+
+        if (mm.equals(password)) {
+            return mm;
         }
-*/
-        login.setPassword()=loginMapper.mima(login);
+
+       // if (mm != password) {
+      //      return ("登录失败");
+      //  }
+        else {
+            return null;
+        }
+
+    }
+
+
+}
 
 
         //通过登录名查询用户
-       // QueryWrapper<User> wrapper = new QueryWrapper();
-      //  wrapper.eq("login_name", login.getLoginName());
-       // User uer=userMapper.selectOne(wrapper);
-         //比较密码
-       // if (uer!=null&&uer.getPassword().equals(login.getPassword()))
+        // QueryWrapper<User> wrapper = new QueryWrapper();
+        //  wrapper.eq("login_name", login.getLoginName());
+        // User uer=userMapper.selectOne(wrapper);
+        //比较密码
+        // if (uer!=null&&uer.getPassword().equals(login.getPassword()))
         //      return new Result(200,"",uer);
         //}
-        /*//比较密码
+      /*  //比较密码
         if (uer!=null&&uer.getPassword().equals(login.getPassword())){
             LoginVO loginVO=new LoginVO();
             loginVO.setId(uer.getId());
@@ -47,8 +60,9 @@ public class LoginServiceImpl  {
             loginVO.setUser(uer);
             return new Result(200,"",loginVO);
         }
+        */
 
-         */
-        return new Result(401,"登录失败","");
-    }
-}
+
+
+
+
