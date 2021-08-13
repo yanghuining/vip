@@ -1,13 +1,17 @@
-package com.example.loginintercept.config;
+package com.example.demo.jwt;
 
-import com.example.loginintercept.exception.TokenRuntimeException;
+import com.example.demo.entity.Login;
+import com.example.demo.exception.TokenRuntimeException;
+import com.example.demo.mapper.LoginMapper;
+import com.example.demo.service.LoginService;
 import io.jsonwebtoken.Claims;
-import java.util.Date;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.Date;
 
 /**
  * 创建一个 token 拦截器.
@@ -24,6 +28,8 @@ public class TokenInterceptor extends HandlerInterceptorAdapter {
   // 注入jwt工具类
   @Autowired
   private JwtUtils jwtUtils;
+  @Autowired
+  private LoginMapper loginMapper;
 
   // 重写 前置拦截方法
   @Override
@@ -58,18 +64,24 @@ public class TokenInterceptor extends HandlerInterceptorAdapter {
     }
 
     // 5、 从 token 中获取员工信息
-    String subject = claim.getSubject();
+    String   subject = claim.getSubject();
+   System.out.println("yonghuming"+subject);
 
     // 6、去数据库中匹配 id 是否存在 (这里直接写死了)
-    if (null == subject ) {
-      System.out.println("员工不存在");
+    Login login =new Login();
+    login.setLoginName(subject);
+
+   String jiancha= loginMapper.mima(login);
+    System.out.println("jiancha"+jiancha);
+    if (jiancha==null){
+      System.out.println("管理员不存在");
       // 这里可以自定义 抛出 token 异常
-      throw new TokenRuntimeException("员工不存在");
+      throw new TokenRuntimeException("管理员不存在");
     }
 
     // 7、成功后 设置想设置的属性，比如员工姓名
-    request.setAttribute("userId", subject);
-    request.setAttribute("userName", "张三");
+   // request.setAttribute("userId", subject);
+   // request.setAttribute("userName", "张三");
 
     return true;
   }

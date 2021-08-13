@@ -1,4 +1,4 @@
-package com.example.loginintercept.config;
+package com.example.demo.jwt;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -27,6 +27,17 @@ public class WebMvcConfig implements WebMvcConfigurer {
   @Override
   public void addInterceptors(InterceptorRegistry registry) {
     // 添加自定义拦截器，并拦截对应 url
-    registry.addInterceptor(interceptor).addPathPatterns("/gateway/**");
+    registry.addInterceptor(interceptor).addPathPatterns("/page");
+    registry.addInterceptor(interceptor).addPathPatterns("/rows");
+    registry.addInterceptor(interceptor).addPathPatterns("/delete");
+    registry.addInterceptor(interceptor).addPathPatterns("/update");
+    registry.addInterceptor(interceptor).addPathPatterns("/cun");
+    registry.addInterceptor(interceptor).addPathPatterns("/insert");
+    registry.addInterceptor(interceptor).addPathPatterns("/ListUser");
+    registry.addInterceptor(interceptor).addPathPatterns("/memory");
+    registry.addInterceptor(interceptor).addPathPatterns("/today");
+    registry.addInterceptor(interceptor).addPathPatterns("/ListByName");
+
   }
+
 }

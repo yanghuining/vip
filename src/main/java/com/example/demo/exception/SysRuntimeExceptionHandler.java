@@ -1,7 +1,7 @@
-package com.example.loginintercept.exception;
+package com.example.demo.exception;
 
-import com.example.loginintercept.config.ResultT;
-import com.example.loginintercept.exception.TokenRuntimeException;
+import com.example.demo.jwt.ResultT;
+import com.example.demo.exception.TokenRuntimeException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 

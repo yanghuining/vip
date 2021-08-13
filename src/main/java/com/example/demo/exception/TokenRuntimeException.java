@@ -1,4 +1,4 @@
-package com.example.loginintercept.exception;
+package com.example.demo.exception;
 
 import lombok.Data;
 
