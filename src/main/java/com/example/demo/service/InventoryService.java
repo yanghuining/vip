@@ -1,33 +1,31 @@
 package com.example.demo.service;
 
-import com.example.demo.entity.User;
-import com.example.demo.mapper.UserMapper;
+import com.example.demo.entity.Inventory;
+import com.example.demo.mapper.InventoryMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.List;
 
 
 @Service
-public class UserService {
+public class InventoryService {
 
     @Autowired
-    private UserMapper userMapper;
+    private InventoryMapper inventoryMapper;
 
-    public List<User> findByName(String userName) {
+  /*  public List<User> findByName(String userName) {
         return userMapper.findUserByName(userName);
-    }
+    } */
 
-    public List<User> queryPage(Integer startRows) {
-        return userMapper.queryPage(startRows);
+    public List<Inventory> queryPage(Integer startRows) {
+        return inventoryMapper.queryPage(startRows);
     }
 
     public int getRowCount() {
-        return userMapper.getRowCount();
+        return inventoryMapper.getRowCount();
     }
-
+/*
     public User insertUser(User user) {
         userMapper.insertUser(user);
         return user;
@@ -80,5 +78,5 @@ public class UserService {
     public int delete(int userId){
         return userMapper.delete(userId);
     }
-
+*/
 }

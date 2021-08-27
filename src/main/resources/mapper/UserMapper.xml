@@ -91,7 +91,7 @@
 	<insert id="insertMemory" parameterType="com.example.demo.entity.User">
 		INSERT INTO memory
 		(
-			actionId,userId,userDate,userName,type,actionGrade,userGrade
+			actionId,userId,userDate,userName,type,oldGrade,actionGrade,userGrade
 		)
 		VALUES (
 				   #{actionId},
@@ -99,6 +99,7 @@
 				   #{userDate, jdbcType=VARCHAR},
 				   #{userName, jdbcType=VARCHAR},
 				   #{type, jdbcType=INTEGER},
+				   #{oldGrade, jdbcType=INTEGER},
 				   #{actionGrade, jdbcType=INTEGER},
 				   #{userGrade, jdbcType=INTEGER}
 			   )

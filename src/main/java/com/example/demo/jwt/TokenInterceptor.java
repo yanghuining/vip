@@ -46,10 +46,12 @@ public class TokenInterceptor extends HandlerInterceptorAdapter {
     }
 
     // 3、解析token
+      System.out.println("解析"+token);
     Claims claim = jwtUtils.getClaimsByToken(token);
 
     if (null == claim) {
       System.out.println("token 解析错误");
+        System.out.println(claim);
       // 这里可以自定义 抛出 token 异常
       throw  new TokenRuntimeException("token 解析错误");
     }
@@ -67,7 +69,7 @@ public class TokenInterceptor extends HandlerInterceptorAdapter {
     String   subject = claim.getSubject();
    System.out.println("yonghuming"+subject);
 
-    // 6、去数据库中匹配 id 是否存在 (这里直接写死了)
+    // 6、去数据库中匹配 id 是否存在
     Login login =new Login();
     login.setLoginName(subject);
 

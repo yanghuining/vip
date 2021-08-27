@@ -22,7 +22,7 @@ import org.springframework.stereotype.Component;
 public class JwtUtils {
 
     // 过期时间
-    private static long expire = 604800;
+    private static long expire = 604800000;
     // 秘钥
     private static String secret = "HSyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9";
 
@@ -35,6 +35,8 @@ public class JwtUtils {
     public String generateToken(String loginName) {
         Date now = new Date();
         Date expireDate = new Date(now.getTime() + expire);
+        System.out.println("now"+now);
+        System.out.println("expireDate"+expireDate);
         return Jwts.builder().setHeaderParam("type", "JWT").setSubject(loginName).setIssuedAt(now)
                 .setExpiration(expireDate).signWith(
                         SignatureAlgorithm.HS512, secret).compact();
@@ -45,6 +47,7 @@ public class JwtUtils {
      */
     public Claims getClaimsByToken(String token) {
         try {
+
             return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
         } catch (Exception e) {
             System.out.println("validate is token error");

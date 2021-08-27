@@ -10,6 +10,7 @@ public class User {
     private String userAddress;
     private int userGrade;
     private int actionGrade;
+    private int oldGrade;
 
 
     public int getType() {
@@ -76,6 +77,14 @@ public class User {
 
     public void setActionGrade(int actionGrade) {
         this.actionGrade = actionGrade;
+    }
+    public int getOldGrade() {
+        return oldGrade;
+    }
+
+
+    public void setOldGrade(int oldGrade) {
+        this.oldGrade = oldGrade;
     }
     @Override
     public String toString() {
