@@ -20,13 +20,14 @@ public interface InventoryMapper {
     public List<Inventory> queryPage(Integer startRows);
 
     public int getRowCount();
+    public  int Cun(Inventory inventory);
 
    /* public int insertUser(User user);
 
     public int delete(int userId);
 
     public int Update(User user);
-    public int Cun(User user);
+
 
     public int grade(User user);
 

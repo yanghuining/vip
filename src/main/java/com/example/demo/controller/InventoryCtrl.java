@@ -35,12 +35,12 @@ public class InventoryCtrl {
         }
 
     }
-
-    @RequestMapping(value = "/cun", method = RequestMethod.POST)
+*/
+    @RequestMapping(value = "inventory/cun", method = RequestMethod.POST)
     @ResponseBody
-    public String cun(User user) {
+    public String cun(Inventory inventory) {
 
-        int result = userService.Cun(user);
+        int result =inventoryService.Cun(inventory);
         if (result >= 1) {
             return "修改成功";
         } else {
@@ -48,7 +48,7 @@ public class InventoryCtrl {
         }
 
     }
-
+/*
     @RequestMapping(value = "/insert", method = RequestMethod.POST)
     public User insert(User user) {
         return userService.insertUser(user);

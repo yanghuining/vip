@@ -5,7 +5,7 @@
 <mapper namespace="com.example.demo.mapper.InventoryMapper">
 
     <resultMap id="result" type="com.example.demo.entity.Inventory">
-        <result property="id" column="id" />
+        <result property="newId" column="newId" />
 		<result property="name" column="name" />
         <result property="quantity" column="quantity" />
         <result property="price" column="price"/>
@@ -26,14 +26,22 @@
 
 
 	<select id="queryPage" resultMap="result"  parameterType="Integer">
-		select * from inventory
-			order by id asc
+		select * from inventory where newId>0
+			order by newId asc
 			limit #{startRows},5
 	</select>
 
 	<select id="getRowCount" resultType="Integer">
 		select count(*) from inventory
 	</select>
+
+
+	<update id="Cun" parameterType="com.example.demo.entity.User">
+
+		update inventory
+		set inventory.quantity=#{quantity}
+		where inventory.newId=#{newId}
+	</update>
 
 
 </mapper>

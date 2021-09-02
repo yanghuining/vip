@@ -53,28 +53,13 @@ public class InventoryService {
         return userMapper.Update(user);
     }
 
-    public int Cun(User user){
-        if (user.getType()==1){
-            int x=userMapper.grade(user);
+    */
+public  int Cun(Inventory inventory){
 
-            user.setOldGrade(x);
 
-            //user.setActionGrade(user.getUserGrade());
-            user.setUserGrade(user.getUserGrade()+x);}
-        if (user.getType()==2){
-            int x=userMapper.grade(user);
-
-            user.setOldGrade(x);
-
-            // user.setActionGrade(user.getUserGrade());
-            user.setUserGrade(x-user.getUserGrade());}
-        Calendar calendar = Calendar.getInstance(); // gets current instance of the calendar
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        user.setUserDate(formatter.format(calendar.getTime()));
-        userMapper.insertMemory(user);
-        return userMapper.Cun(user);
+    return inventoryMapper.Cun(inventory);
     }
-
+/*
     public int delete(int userId){
         return userMapper.delete(userId);
     }

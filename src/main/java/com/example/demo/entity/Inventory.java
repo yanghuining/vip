@@ -1,18 +1,18 @@
 package com.example.demo.entity;
 
 public class Inventory {
-    private int id;
+    private int newId;
 
     private String name;
     private String remark;
     private int quantity;
     private double price;
-    public int getId() {
-        return id;
+    public int getNewId() {
+        return newId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setNewId(int newId) {
+        this.newId = newId;
     }
 
 
@@ -52,7 +52,7 @@ public class Inventory {
     @Override
     public String toString() {
         return "Inventory{" +
-                "id=" + id +
+                "newId=" + newId +
                 ", name='" + name + '\'' +
                 ", quantity='" + quantity + '\'' +
                 ", remark='" + remark + '\'' +
