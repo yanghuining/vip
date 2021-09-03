@@ -35,7 +35,18 @@
 		select count(*) from inventory
 	</select>
 
-
+	<insert id="insertInventory" parameterType="com.example.demo.entity.Inventory">
+		INSERT INTO inventory
+		(
+			newId,name,quantity,price
+		)
+		VALUES (
+				   #{newId},
+				   #{name, jdbcType=VARCHAR},
+				   #{quantity, jdbcType=INTEGER},
+				   #{price, jdbcType=INTEGER}
+			   )
+	</insert>
 	<update id="Cun" parameterType="com.example.demo.entity.User">
 
 		update inventory

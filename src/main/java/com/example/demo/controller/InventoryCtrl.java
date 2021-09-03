@@ -48,41 +48,41 @@ public class InventoryCtrl {
         }
 
     }
-/*
-    @RequestMapping(value = "/insert", method = RequestMethod.POST)
-    public User insert(User user) {
-        return userService.insertUser(user);
+
+    @RequestMapping(value = "/inventory/insert", method = RequestMethod.POST)
+    public Inventory insert(Inventory inventory) {
+        return inventoryService.insertInventory(inventory);
     }
+    /*
+        @RequestMapping("/ListUser")
+        @ResponseBody
+        public List<User> ListUser() {
+            return userService.ListUser();
+        }
 
-    @RequestMapping("/ListUser")
-    @ResponseBody
-    public List<User> ListUser() {
-        return userService.ListUser();
-    }
 
+        @RequestMapping("/memory")
+        @ResponseBody
+        public List<User> memory(Integer userId) {
+            return userService.memory(userId);
+        }
 
-    @RequestMapping("/memory")
-    @ResponseBody
-    public List<User> memory(Integer userId) {
-        return userService.memory(userId);
-    }
+        @RequestMapping("/today")
+        @ResponseBody
+        public List<User> today(String userDate) {
+            return userService.today(userDate);
+        }
 
-    @RequestMapping("/today")
-    @ResponseBody
-    public List<User> today(String userDate) {
-        return userService.today(userDate);
-    }
+        @RequestMapping("/ListByName")
+        @ResponseBody
+        public List<User> ListUserByName(String userName) {
+            return userService.findByName(userName);
+        }
 
-    @RequestMapping("/ListByName")
-    @ResponseBody
-    public List<User> ListUserByName(String userName) {
-        return userService.findByName(userName);
-    }
-
-    /**
-     * 分页
-     * @return
-     */
+        /**
+         * 分页
+         * @return
+         */
     @RequestMapping(value="/inventory/page")
     @ResponseBody
     public List<Inventory> page(Integer page){

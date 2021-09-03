@@ -22,8 +22,8 @@ public interface InventoryMapper {
     public int getRowCount();
     public  int Cun(Inventory inventory);
 
-   /* public int insertUser(User user);
-
+    public  int insertInventory(Inventory inventory);
+/*
     public int delete(int userId);
 
     public int Update(User user);

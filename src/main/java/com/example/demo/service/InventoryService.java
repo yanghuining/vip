@@ -25,35 +25,35 @@ public class InventoryService {
     public int getRowCount() {
         return inventoryMapper.getRowCount();
     }
-/*
-    public User insertUser(User user) {
-        userMapper.insertUser(user);
-        return user;
-    }
 
-    public List<User> ListUser(){
-        return userMapper.ListUser();
+    public Inventory insertInventory(Inventory inventory) {
+        inventoryMapper.insertInventory(inventory);
+        return inventory;
     }
+    /*
+        public List<User> ListUser(){
+            return userMapper.ListUser();
+        }
 
-    public List<User> memory(Integer userId){
+        public List<User> memory(Integer userId){
 
-        return userMapper.memory(userId);
-    }
-    public List<User> today(String userDate){
-        if(userDate==null){
-            Calendar calendar = Calendar.getInstance(); // gets current instance of the calendar
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            calendar.set(Calendar.SECOND,0); //这是将当天的【秒】设置为0
-            calendar.set(Calendar.MINUTE,0); //这是将当天的【分】设置为0
-            calendar.set(Calendar.HOUR_OF_DAY,0); //这是将当天的【时】设置为0
-            userDate=formatter.format(calendar.getTime());}
-        return userMapper.today(userDate);
-    }
-    public int Update(User user){
-        return userMapper.Update(user);
-    }
+            return userMapper.memory(userId);
+        }
+        public List<User> today(String userDate){
+            if(userDate==null){
+                Calendar calendar = Calendar.getInstance(); // gets current instance of the calendar
+                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                calendar.set(Calendar.SECOND,0); //这是将当天的【秒】设置为0
+                calendar.set(Calendar.MINUTE,0); //这是将当天的【分】设置为0
+                calendar.set(Calendar.HOUR_OF_DAY,0); //这是将当天的【时】设置为0
+                userDate=formatter.format(calendar.getTime());}
+            return userMapper.today(userDate);
+        }
+        public int Update(User user){
+            return userMapper.Update(user);
+        }
 
-    */
+        */
 public  int Cun(Inventory inventory){
 
 
