@@ -39,8 +39,34 @@ public class InventoryCtrl {
     @RequestMapping(value = "inventory/cun", method = RequestMethod.POST)
     @ResponseBody
     public String cun(Inventory inventory) {
-
+         if(inventory.getNewId()>0){
         int result =inventoryService.Cun(inventory);
+             if (result >= 1) {
+                 return "修改成功";
+             } else {
+                 return "修改失败";
+             }
+         }
+         else
+        {
+            int result =inventoryService.up(inventory);
+            if (result >= 1) {
+                return "修改成功";
+            } else {
+                return "修改失败";
+            }
+        }
+
+
+
+
+    }
+
+    @RequestMapping(value = "inventory/up", method = RequestMethod.POST)
+    @ResponseBody
+    public String up(Inventory inventory) {
+
+        int result =inventoryService.up(inventory);
         if (result >= 1) {
             return "修改成功";
         } else {
@@ -87,9 +113,18 @@ public class InventoryCtrl {
     @ResponseBody
     public List<Inventory> page(Integer page){
         int pageNow = page == null ? 1 : page;
-        int pageSize = 5;
+        int pageSize = 10;
         int startRows = pageSize*(pageNow-1);
         List<Inventory> list = inventoryService.queryPage(startRows);
+        return list;
+    }
+    @RequestMapping(value="/inventory/base")
+    @ResponseBody
+    public List<Inventory> base(Integer page){
+        int pageNow = page == null ? 1 : page;
+        int pageSize = 10;
+        int startRows = pageSize*(pageNow-1);
+        List<Inventory> list = inventoryService.base(startRows);
         return list;
     }
 

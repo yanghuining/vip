@@ -2,10 +2,12 @@ package com.example.demo.entity;
 
 public class Inventory {
     private int newId;
-
+    private int id;
     private String name;
     private String remark;
     private int quantity;
+    private int actionquantity;
+    private int toId;
     private double price;
     public int getNewId() {
         return newId;
@@ -15,6 +17,21 @@ public class Inventory {
         this.newId = newId;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getToId() {
+        return toId;
+    }
+
+    public void setToId(int toId) {
+        this.toId = toId;
+    }
 
     public int getQuantity() {
         return quantity;
@@ -24,6 +41,14 @@ public class Inventory {
         this.quantity = quantity;
     }
 
+
+    public int getActionquantity() {
+        return actionquantity;
+    }
+
+    public void setActionquantity(int actionquantity) {
+        this.actionquantity = actionquantity;
+    }
     public double getPrice() {
         return price;
     }
@@ -55,7 +80,8 @@ public class Inventory {
                 "newId=" + newId +
                 ", name='" + name + '\'' +
                 ", quantity='" + quantity + '\'' +
-                ", remark='" + remark + '\'' +
+                ", remark" +
+                "='" + remark + '\'' +
                 '}';
     }
 }

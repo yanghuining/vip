@@ -5,9 +5,12 @@
 <mapper namespace="com.example.demo.mapper.InventoryMapper">
 
     <resultMap id="result" type="com.example.demo.entity.Inventory">
+		<result property="id" column="id" />
         <result property="newId" column="newId" />
+		<result property="toId" column="toId" />
 		<result property="name" column="name" />
         <result property="quantity" column="quantity" />
+		<result property="actionquantity" column="actionquantity" />
         <result property="price" column="price"/>
 		<result property="remark" column="remark"/>
     </resultMap>
@@ -28,11 +31,22 @@
 	<select id="queryPage" resultMap="result"  parameterType="Integer">
 		select * from inventory where newId>0
 			order by newId asc
-			limit #{startRows},5
+			limit #{startRows},10
 	</select>
-
+	<select id="base" resultMap="result"  parameterType="Integer">
+		select * from inventory where ISNULL(newId)
+		order by id asc
+			limit #{startRows},10
+	</select>
 	<select id="getRowCount" resultType="Integer">
 		select count(*) from inventory
+	</select>
+
+	<select id="inventory" resultType="Integer">
+		select quantity from inventory where inventory.id=#{id}
+	</select>
+	<select id="inventorynew" resultType="Integer">
+		select quantity from inventory where inventory.newId=#{newId}
 	</select>
 
 	<insert id="insertInventory" parameterType="com.example.demo.entity.Inventory">
@@ -54,5 +68,11 @@
 		where inventory.newId=#{newId}
 	</update>
 
+	<update id="go" parameterType="com.example.demo.entity.User">
+
+		update inventory
+		set inventory.quantity=#{quantity}
+		where inventory.id=#{id}
+	</update>
 
 </mapper>

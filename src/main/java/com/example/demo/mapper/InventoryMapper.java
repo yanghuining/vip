@@ -18,20 +18,17 @@ public interface InventoryMapper {
    */
 
     public List<Inventory> queryPage(Integer startRows);
-
+    public List<Inventory> base(Integer startRows);
     public int getRowCount();
     public  int Cun(Inventory inventory);
-
+    public  int inventory(Inventory inventory);
+    public  int inventorynew(Inventory inventory);
+    public  int go(Inventory inventory);
     public  int insertInventory(Inventory inventory);
 /*
     public int delete(int userId);
 
-    public int Update(User user);
 
-
-    public int grade(User user);
-
-    public int insertMemory(User user);
 */
 
 

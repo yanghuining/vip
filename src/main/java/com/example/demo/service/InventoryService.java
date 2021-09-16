@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -21,16 +23,22 @@ public class InventoryService {
     public List<Inventory> queryPage(Integer startRows) {
         return inventoryMapper.queryPage(startRows);
     }
-
+    public List<Inventory> base(Integer startRows) {
+        return inventoryMapper.base(startRows);
+    }
     public int getRowCount() {
         return inventoryMapper.getRowCount();
     }
 
     public Inventory insertInventory(Inventory inventory) {
+
         inventoryMapper.insertInventory(inventory);
         return inventory;
     }
-    /*
+   /* private void insertInventory(Integer startRows,Inventory inventory) {
+        List<Inventory> Inventory = inventoryMapper.queryPage(startRows);
+        Map<String, Inventory> InventoryMap = Inventory.stream().collect(Collectors.toMap(Inventory::getNewId, e -> e, (v1, v2) -> v1));
+    }/*
         public List<User> ListUser(){
             return userMapper.ListUser();
         }
@@ -58,6 +66,22 @@ public  int Cun(Inventory inventory){
 
 
     return inventoryMapper.Cun(inventory);
+    }
+
+
+    public  int up(Inventory inventory){
+//去掉仓库库存
+int x=inventoryMapper.inventory(inventory);
+inventory.setQuantity(x- inventory.getActionquantity());
+inventoryMapper.go(inventory);
+//增加机器库存
+
+        inventory.setNewId(inventory.getToId());
+        System.out.println("kucun"+inventory.getNewId());
+        int y=inventoryMapper.inventorynew(inventory);
+        inventory.setQuantity(y+ inventory.getActionquantity());
+
+        return inventoryMapper.Cun(inventory);
     }
 /*
     public int delete(int userId){

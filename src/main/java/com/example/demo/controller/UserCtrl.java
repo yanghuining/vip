@@ -85,7 +85,7 @@ public class UserCtrl {
     @ResponseBody
     public List<User> page(Integer page){
         int pageNow = page == null ? 1 : page;
-        int pageSize = 5;
+        int pageSize = 10;
         int startRows = pageSize*(pageNow-1);
         List<User> list = userService.queryPage(startRows);
         return list;
