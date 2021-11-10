@@ -14,8 +14,7 @@ import java.util.stream.Collectors;
 @Service
 public class InventoryService {
 
-    @Autowired
-    private InventoryMapper inventoryMapper;
+    @Autowired private InventoryMapper inventoryMapper;
 
   /*  public List<User> findByName(String userName) {
         return userMapper.findUserByName(userName);
