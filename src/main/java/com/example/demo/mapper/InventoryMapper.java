@@ -20,6 +20,8 @@ public interface InventoryMapper {
     public List<Inventory> queryPage(Integer startRows);
     public List<Inventory> base(Integer startRows);
     public int getRowCount();
+    public int valueup();
+    public int valuedown();
     public  int Cun(Inventory inventory);
     public  int inventory(Inventory inventory);
     public  int inventorynew(Inventory inventory);

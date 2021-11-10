@@ -35,7 +35,7 @@ public class InventoryCtrl {
         }
 
     }
-*/
+*///修改库存接口
     @RequestMapping(value = "inventory/cun", method = RequestMethod.POST)
     @ResponseBody
     public String cun(Inventory inventory) {
@@ -49,19 +49,19 @@ public class InventoryCtrl {
          }
          else
         {
-            int result =inventoryService.up(inventory);
-            if (result >= 1) {
+            return inventoryService.up(inventory);
+           /* if (result >= 1) {
                 return "修改成功";
             } else {
                 return "修改失败";
-            }
+            }*/
         }
 
 
 
 
     }
-
+/*
     @RequestMapping(value = "inventory/up", method = RequestMethod.POST)
     @ResponseBody
     public String up(Inventory inventory) {
@@ -73,10 +73,16 @@ public class InventoryCtrl {
             return "修改失败";
         }
 
-    }
 
+
+    }*/
+//添加机器接口
     @RequestMapping(value = "/inventory/insert", method = RequestMethod.POST)
     public Inventory insert(Inventory inventory) {
+       System.out.println(inventory.getNewId()+"get");
+
+        if(inventory.getNewId()==null)
+        inventory.setNewId(0);
         return inventoryService.insertInventory(inventory);
     }
     /*
@@ -103,12 +109,22 @@ public class InventoryCtrl {
         @ResponseBody
         public List<User> ListUserByName(String userName) {
             return userService.findByName(userName);
+        }*/
+
+    //查询价值接口
+         @RequestMapping(value="/inventory/value")
+        @ResponseBody
+        public String value() {
+            return inventoryService.value();
         }
+
 
         /**
          * 分页
          * @return
          */
+
+        //机器内
     @RequestMapping(value="/inventory/page")
     @ResponseBody
     public List<Inventory> page(Integer page){
@@ -118,6 +134,8 @@ public class InventoryCtrl {
         List<Inventory> list = inventoryService.queryPage(startRows);
         return list;
     }
+
+    //库存
     @RequestMapping(value="/inventory/base")
     @ResponseBody
     public List<Inventory> base(Integer page){
@@ -135,6 +153,7 @@ public class InventoryCtrl {
     @RequestMapping(value="/inventory/rows")
     @ResponseBody
     public int rows(){
+
         return inventoryService.getRowCount();
     }
 }

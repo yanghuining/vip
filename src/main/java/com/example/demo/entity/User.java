@@ -1,5 +1,6 @@
 package com.example.demo.entity;
-
+//别名： model层 ，domain层
+//用途： 实体层，用于存放我们的实体类，与数据库中的属性值基本保持一致，实现set和get的方法。
 public class User {
     public boolean getUserGrade;
     public int type;

@@ -1,7 +1,7 @@
 package com.example.demo.entity;
 
 public class Inventory {
-    private int newId;
+    private Integer newId;
     private int id;
     private String name;
     private String remark;
@@ -9,11 +9,13 @@ public class Inventory {
     private int actionquantity;
     private int toId;
     private double price;
-    public int getNewId() {
+    public Integer getNewId() {
+        if(newId!=null)
         return newId;
+        return 0;
     }
 
-    public void setNewId(int newId) {
+    public void setNewId(Integer newId) {
         this.newId = newId;
     }
 

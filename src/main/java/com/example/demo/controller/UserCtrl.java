@@ -6,6 +6,9 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -48,8 +51,10 @@ public class UserCtrl {
     }
 
     @RequestMapping(value = "/insert", method = RequestMethod.POST)
-    public User insert(User user) {
+    public User insert(User user) throws ParseException {
+
         return userService.insertUser(user);
+
     }
 
     @RequestMapping("/ListUser")

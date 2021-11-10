@@ -5,8 +5,10 @@ import com.example.demo.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 
@@ -28,7 +30,13 @@ public class UserService {
         return userMapper.getRowCount();
     }
 
-    public User insertUser(User user) {
+    public User insertUser(User user) throws ParseException {
+        String time =user.getUserDate();
+        //格式化时间
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSX");
+        Date parse = df.parse(time);
+       SimpleDateFormat df2=new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        user.setUserDate(df2.format(parse));
         userMapper.insertUser(user);
         return user;
     }

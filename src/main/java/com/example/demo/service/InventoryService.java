@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.entity.Inventory;
+import com.example.demo.enums.CodeEnum;
 import com.example.demo.mapper.InventoryMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -56,32 +57,41 @@ public class InventoryService {
                 calendar.set(Calendar.HOUR_OF_DAY,0); //这是将当天的【时】设置为0
                 userDate=formatter.format(calendar.getTime());}
             return userMapper.today(userDate);
-        }
-        public int Update(User user){
-            return userMapper.Update(user);
+        }*///
+
+    //计算总价值
+        public String value(){
+            //上架总价值
+            double valueup =inventoryMapper.valueup();
+            double valuedown =inventoryMapper.valuedown();
+            double valueall=valueup+valuedown;
+            String text="当前机器内总价值"+valueup+"元；未上架库存价值"+valuedown+"元；总价值为"+valueall+"元";
+            return text;
+
         }
 
-        */
+
 public  int Cun(Inventory inventory){
-
-
+//更新库存
     return inventoryMapper.Cun(inventory);
     }
 
-
-    public  int up(Inventory inventory){
+//上架功能
+    public  String up(Inventory inventory){
 //去掉仓库库存
-int x=inventoryMapper.inventory(inventory);
+int x=inventoryMapper.inventory(inventory);//
+        if(x<inventory.getActionquantity())
+            return CodeEnum.ERROR.getname();
 inventory.setQuantity(x- inventory.getActionquantity());
-inventoryMapper.go(inventory);
+inventoryMapper.go(inventory);//根据id更新库存
 //增加机器库存
 
         inventory.setNewId(inventory.getToId());
         System.out.println("kucun"+inventory.getNewId());
         int y=inventoryMapper.inventorynew(inventory);
         inventory.setQuantity(y+ inventory.getActionquantity());
-
-        return inventoryMapper.Cun(inventory);
+        inventoryMapper.Cun(inventory);//根据机器号码更新库存
+        return CodeEnum.SUUCESS.getname();
     }
 /*
     public int delete(int userId){

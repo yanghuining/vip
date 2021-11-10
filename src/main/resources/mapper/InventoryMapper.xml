@@ -31,12 +31,12 @@
 	<select id="queryPage" resultMap="result"  parameterType="Integer">
 		select * from inventory where newId>0
 			order by newId asc
-			limit #{startRows},10
+
 	</select>
 	<select id="base" resultMap="result"  parameterType="Integer">
-		select * from inventory where ISNULL(newId)
+		select * from inventory where newId=0
 		order by id asc
-			limit #{startRows},10
+
 	</select>
 	<select id="getRowCount" resultType="Integer">
 		select count(*) from inventory
@@ -49,6 +49,14 @@
 		select quantity from inventory where inventory.newId=#{newId}
 	</select>
 
+
+	<select id="valueup" resultType="Integer">
+		select sum(quantity*price) from inventory  where newId>0
+	</select>
+
+	<select id="valuedown" resultType="Integer">
+		select sum(quantity*price) from inventory  where newId=0
+	</select>
 	<insert id="insertInventory" parameterType="com.example.demo.entity.Inventory">
 		INSERT INTO inventory
 		(
