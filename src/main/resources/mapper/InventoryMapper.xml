@@ -16,15 +16,17 @@
     </resultMap>
 
 
-	<resultMap id="memory" type="com.example.demo.entity.User">
-		<result property="actionId" column="actionId" />
-		<result property="userId" column="userId" />
-		<result property="userDate" column="userDate" />
-		<result property="userName" column="userName" />
+	<resultMap id="last" type="com.example.demo.entity.Inventory">
+		<result property="id" column="id" />
+		<result property="newId" column="newId" />
+		<result property="name" column="name" />
+		<result property="quantity" column="quantity" />
+		<result property="actionquantity" column="actionquantity" />
+		<result property="oldquantity" column="oldquantity" />
 		<result property="type" column="type" />
-		<result property="actionGrade" column="actionGrade"/>
-		<result property="userGrade" column="userGrade"/>
+		<result property="date" column="date"/>
 	</resultMap>
+
 
 
 
@@ -57,6 +59,10 @@
 	<select id="valuedown" resultType="Integer">
 		select sum(quantity*price) from inventory  where newId=0
 	</select>
+
+	<select id="inventorylast" resultMap="last" >
+		select * from inventorylast  where date>#{date} order by date desc
+	</select>
 	<insert id="insertInventory" parameterType="com.example.demo.entity.Inventory">
 		INSERT INTO inventory
 		(
@@ -76,6 +82,13 @@
 		where inventory.newId=#{newId}
 	</update>
 
+	<update id="basecun" parameterType="com.example.demo.entity.User">
+
+		update inventory
+		set inventory.quantity=#{quantity}
+		where inventory.id=#{id}
+	</update>
+
 	<update id="go" parameterType="com.example.demo.entity.User">
 
 		update inventory
@@ -83,4 +96,36 @@
 		where inventory.id=#{id}
 	</update>
 
+	<insert id="insertInventorylast" parameterType="com.example.demo.entity.Inventory">
+		INSERT INTO inventorylast
+		(
+			newId,name,quantity,oldquantity,type,date,actionquantity
+		)
+		VALUES (
+				   #{newId},
+				   #{name, jdbcType=VARCHAR},
+				   #{quantity, jdbcType=INTEGER},
+				   #{oldquantity, jdbcType=INTEGER},
+				   #{type},
+				   #{date, jdbcType=VARCHAR},
+				   #{actionquantity, jdbcType=INTEGER}
+			   )
+	</insert>
+
+	<insert id="insertInventorylastup" parameterType="com.example.demo.entity.Inventory">
+		INSERT INTO inventorylast
+		(
+			id,newId,name,quantity,oldquantity,type,date,actionquantity
+		)
+		VALUES (
+				   #{id},
+				   #{newId},
+				   #{name, jdbcType=VARCHAR},
+				   #{quantity, jdbcType=INTEGER},
+				   #{oldquantity, jdbcType=INTEGER},
+				   #{type},
+				   #{date, jdbcType=VARCHAR},
+				   #{actionquantity, jdbcType=INTEGER}
+			   )
+	</insert>
 </mapper>

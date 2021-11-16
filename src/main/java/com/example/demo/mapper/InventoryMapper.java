@@ -19,16 +19,20 @@ public interface InventoryMapper {
 
     public List<Inventory> queryPage(Integer startRows);
     public List<Inventory> base(Integer startRows);
+    public List<Inventory> inventorylast(String date);
     public int getRowCount();
     public int valueup();
     public int valuedown();
     public  int Cun(Inventory inventory);
+    public  int basecun(Inventory inventory);
     public  int inventory(Inventory inventory);
     public  int inventorynew(Inventory inventory);
     public  int go(Inventory inventory);
     public  int insertInventory(Inventory inventory);
-/*
-    public int delete(int userId);
+public  int insertInventorylast(Inventory inventory);
+    public  int insertInventorylastup(Inventory inventory);
+
+  /*  public int delete(int userId);
 
 
 */

@@ -9,12 +9,10 @@ import org.springframework.stereotype.Service;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 
 @Service
-public class InventoryService {
+public class MoneyService {
 
     @Autowired
     private InventoryMapper inventoryMapper;
@@ -71,7 +69,12 @@ public class InventoryService {
             return text;
 
         }
+ public void today(){
+            int salequantity=0;
 
+
+
+ }
 
 public  int Cun(Inventory inventory){
             //增加修改库存记录
@@ -146,7 +149,6 @@ public  int Cun(Inventory inventory){
             calendar.set(Calendar.MINUTE,0); //这是将当天的【分】设置为0
             calendar.set(Calendar.HOUR_OF_DAY,0); //这是将当天的【时】设置为0
             date=formatter.format(calendar.getTime());}
-        System.out.println(date);
 
        return  inventoryMapper.inventorylast(date);
 

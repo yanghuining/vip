@@ -9,6 +9,12 @@ public class Inventory {
     private int actionquantity;
     private int toId;
     private double price;
+    private int oldquantity;
+    private  int type;
+    private String date;
+
+
+
     public Integer getNewId() {
         if(newId!=null)
         return newId;
@@ -21,6 +27,24 @@ public class Inventory {
 
     public int getId() {
         return id;
+    }
+
+
+
+    public void setOldquantity(Integer oldquantity) {
+        this.oldquantity = oldquantity;
+    }
+
+    public int getOldquantity() {
+        return oldquantity;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
+    public int getType() {
+        return type;
     }
 
     public void setId(int id) {
@@ -73,6 +97,13 @@ public class Inventory {
 
     public void setName(String name) {
         this.name = name;
+    }
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
 
