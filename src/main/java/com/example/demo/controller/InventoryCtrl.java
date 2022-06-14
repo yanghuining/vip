@@ -16,26 +16,8 @@ public class InventoryCtrl {
     @Autowired
     private InventoryService inventoryService;
 
-   /* @RequestMapping(value = "/delete", method = RequestMethod.POST)
-    public Integer delete(Integer userId) {
-        System.out.println(userId);
-        int result = userService.delete(userId);
-        return result;
-    }
 
-
-    @RequestMapping(value = "/update", method = RequestMethod.POST)
-    @ResponseBody
-    public String update(User user) {
-        int result = userService.Update(user);
-        if (result >= 1) {
-            return "修改成功";
-        } else {
-            return "修改失败";
-        }
-
-    }
-*///修改库存接口
+//修改库存接口
     @RequestMapping(value = "inventory/cun", method = RequestMethod.POST)
     @ResponseBody
     public String cun(Inventory inventory) {

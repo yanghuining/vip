@@ -1,0 +1,16 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD com.example.Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.MoneyMapper">
+
+    <select id="todayquantity" resultType="Integer">
+	select sum(oldquantity-quantity) from inventorylast where date between #{date} and #{afterdate} and type=1
+    </select>
+	<select id="todaypay" resultType="Double">
+		select sum((inventorylast.oldquantity-inventorylast.quantity)*inventory.price)from inventorylast left join inventory
+		    on inventorylast.newId=inventory.newId where inventorylast.type=1 and date between #{date} and #{afterdate}
+	</select>
+
+</mapper>
+
