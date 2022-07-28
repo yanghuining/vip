@@ -9,9 +9,15 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class DemoApplicationTests {
+public class xdftest {
 
     @Test
     public void contextLoads() {

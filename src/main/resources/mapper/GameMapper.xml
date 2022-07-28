@@ -1,0 +1,159 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD com.example.Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.GameMapper">
+
+    <resultMap id="result" type="com.example.demo.entity.Gamebalance">
+		<result property="id" column="id" />
+        <result property="type" column="type" />
+		<result property="kind" column="kind" />
+		<result property="name" column="name" />
+        <result property="budget" column="budget" />
+		<result property="price" column="price" />
+        <result property="paid" column="paid"/>
+		<result property="balance" column="balance"/>
+		<result property="remark" column="remark"/>
+		<result property="creattime" column="creattime"/>
+    </resultMap>
+
+
+	<resultMap id="last" type="com.example.demo.entity.Inventory">
+		<result property="id" column="id" />
+		<result property="newId" column="newId" />
+		<result property="name" column="name" />
+		<result property="quantity" column="quantity" />
+		<result property="actionquantity" column="actionquantity" />
+		<result property="oldquantity" column="oldquantity" />
+		<result property="type" column="type" />
+		<result property="date" column="date"/>
+	</resultMap>
+
+
+
+
+	<select id="list" resultMap="result"  parameterType="Integer">
+		select * from gameexpense
+			order by id asc
+
+	</select>
+	<select id="base" resultMap="result"  parameterType="Integer">
+		select * from inventory where newId=0
+		order by id asc
+
+	</select>
+	<select id="getRowCount" resultType="Integer">
+		select count(*) from inventory
+	</select>
+
+	<select id="inventory" resultType="Integer">
+		select quantity from inventory where inventory.id=#{id}
+	</select>
+	<select id="inventorynew" resultType="Integer">
+		select quantity from inventory where inventory.newId=#{newId}
+	</select>
+
+
+	<select id="paid" resultType="Integer">
+		select sum(paid) from gameexpense
+	</select>
+
+	<select id="balance" resultType="Integer">
+		select sum(balance) from gameexpense
+	</select>
+
+	<select id="pend" resultType="Integer">
+		select sum(budget) from gameexpense where status=1
+	</select>
+
+
+	<select id="inventorylast" resultMap="last" >
+		select * from inventorylast  where date>#{date} order by date desc
+	</select>
+	<insert id="insertplan" parameterType="com.example.demo.entity.Gamebalance">
+		INSERT INTO gameexpense
+		(
+			type,kind,name,budget,remark,status,creattime
+		)
+		VALUES (
+				   #{type, jdbcType=INTEGER},
+				   #{kind, jdbcType=INTEGER},
+				   #{name, jdbcType=VARCHAR},
+				   #{budget, jdbcType=INTEGER},
+				   #{remark, jdbcType=VARCHAR},
+				   #{status, jdbcType=INTEGER},
+				   #{creattime, jdbcType=VARCHAR}
+
+			   )
+	</insert>
+	<update id="appoint" parameterType="com.example.demo.entity.Gamebalance">
+
+		update gameexpense
+		set gameexpense.price=#{price},
+		gameexpense.paid=#{paid},
+		gameexpense.balance=#{balance},
+		gameexpense.status=#{status},
+		gameexpense.updatetime=#{updatetime}
+		where gameexpense.id=#{id}
+	</update>
+
+	<update id="end" parameterType="com.example.demo.entity.Gamebalance">
+
+		update gameexpense
+		set gameexpense.paid=#{paid},
+			gameexpense.balance=#{balance},
+			gameexpense.status=#{status},
+			gameexpense.updatetime=#{updatetime}
+		where gameexpense.id=#{id}
+	</update>
+
+	<update id="modifyplan" parameterType="com.example.demo.entity.Gamebalance">
+
+		update gameexpense
+		set gameexpense.type=#{type},
+			gameexpense.kind=#{kind},
+			gameexpense.name=#{name},
+			gameexpense.budget=#{budget},
+			gameexpense.remark=#{remark}
+		where gameexpense.id=#{id}
+	</update>
+	<update id="go" parameterType="com.example.demo.entity.User">
+
+		update inventory
+		set inventory.quantity=#{quantity}
+		where inventory.id=#{id}
+	</update>
+
+	<insert id="insertInventorylast" parameterType="com.example.demo.entity.Inventory">
+		INSERT INTO inventorylast
+		(
+			newId,name,quantity,oldquantity,type,date,actionquantity
+		)
+		VALUES (
+				   #{newId},
+				   #{name, jdbcType=VARCHAR},
+				   #{quantity, jdbcType=INTEGER},
+				   #{oldquantity, jdbcType=INTEGER},
+				   #{type},
+				   #{date, jdbcType=VARCHAR},
+				   #{actionquantity, jdbcType=INTEGER}
+			   )
+	</insert>
+
+	<insert id="insertInventorylastup" parameterType="com.example.demo.entity.Inventory">
+		INSERT INTO inventorylast
+		(
+			id,newId,name,quantity,oldquantity,type,date,actionquantity
+		)
+		VALUES (
+				   #{id},
+				   #{newId},
+				   #{name, jdbcType=VARCHAR},
+				   #{quantity, jdbcType=INTEGER},
+				   #{oldquantity, jdbcType=INTEGER},
+				   #{type},
+				   #{date, jdbcType=VARCHAR},
+				   #{actionquantity, jdbcType=INTEGER}
+			   )
+	</insert>
+</mapper>
