@@ -30,7 +30,7 @@ public class xdftest {
 
     @Test
     public  void sign() {
-        String sign = ApiMac.sign("795f833b63fd7b277588e3757bd97f63", "/bringnew/app/graduate/entrance/get?userId=fc9fd4f6-ff1b-4177-9b87-e8255ec2b492&schoolId=9998&studentCode=TESSBM30221802304");
+        String sign = ApiMac.sign("795f833b63fd7b277588e3757bd97f63", "/bring/v1/student/old?activityId=510&schoolId=53&t=1679391739705&appId=api_app_wechat");
         System.out.println("签名是"+sign);
     }
 
